@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function EditFood() {
+function EditFoodContent() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(true);
@@ -117,5 +117,13 @@ export default function EditFood() {
         Update Food
       </button>
     </form>
+  );
+}
+
+export default function EditFood() {
+  return (
+    <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+      <EditFoodContent />
+    </Suspense>
   );
 } 
